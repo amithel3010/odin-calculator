@@ -10,6 +10,7 @@ let a = "";
 let b = "";
 let operator = "";
 let textToDisplay = "";
+let hasResult = false;
 
 numberBtns.forEach(numberBtn =>
 {
@@ -30,7 +31,8 @@ operatorBtns.forEach(operatorBtn =>
 });
 
 equalsBtn.addEventListener("click", () => calculateAndDisplay());
-clearBtn.addEventListener("click", () =>{
+clearBtn.addEventListener("click", () =>
+{
     reset();
     updateDisplay()
 });
@@ -70,7 +72,7 @@ function operate(a, b, operator)
 
     }
 }
-//basic math functions
+
 function add(a, b)
 {
     return a + b;
@@ -110,6 +112,10 @@ function handleNumberButtonClick(numberBtn)
     }
     else
     {
+        if (hasResult)
+        {
+            reset();
+        }
         a += numberBtn.textContent;
     }
 
@@ -136,6 +142,7 @@ function calculateAndDisplay(optionalOperator = "")
     reset()
     a = result;
     operator = optionalOperator;
+    hasResult = true;
     updateDisplay();
 }
 
@@ -144,4 +151,14 @@ function reset()
     a = "";
     b = "";
     operator = "";
+    hasResult = false;
 }
+
+
+//if has result 
+//and number pressed
+//reset everything 
+//a = number pressed
+
+//if has result and operator pressed
+//a = result
