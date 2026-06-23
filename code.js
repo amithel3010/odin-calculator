@@ -30,7 +30,10 @@ operatorBtns.forEach(operatorBtn =>
 });
 
 equalsBtn.addEventListener("click", () => calculateAndDisplay());
-clearBtn.addEventListener("click", reset);
+clearBtn.addEventListener("click", () =>{
+    reset();
+    updateDisplay()
+});
 
 
 function operate(a, b, operator)
@@ -141,5 +144,4 @@ function reset()
     a = "";
     b = "";
     operator = "";
-    updateDisplay();
 }
