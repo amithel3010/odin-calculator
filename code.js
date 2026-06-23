@@ -34,6 +34,10 @@ document.addEventListener("keydown", (event) =>
     {
         handleBackspaceClick();
     }
+    else if(keyPressed === "=")
+    {
+        calculateAndDisplay();
+    }
     else{
         console.log("unsupported key pressed: "+ event.key);
     }
