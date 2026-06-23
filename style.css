@@ -74,3 +74,8 @@ body {
     flex-grow: 1;
     max-height: 72px;
 }
+
+#clear-button{
+    flex-grow: 1;
+    max-height: 72px;
+}
