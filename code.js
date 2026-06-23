@@ -1,11 +1,51 @@
+//query relavnet html elements
+const numberBtns = document.querySelectorAll(".number-button");
+const operatorBtns = document.querySelectorAll(".operator-button");
+const equalsBtn = document.querySelector("#equals");
+const display = document.querySelector("#display");
+
 //calculation vars
-let a;
-let b;
-let operator;
+let a = "";
+let b = "";
+let operator = "";
+let textToDisplay = "";
+
+numberBtns.forEach(numberBtn =>
+{
+    numberBtn.addEventListener("click", () =>
+    {
+        handleNumberButtonClick(numberBtn);
+        updateDisplay();
+    });
+});
+
+operatorBtns.forEach(operatorBtn =>
+{
+    operatorBtn.addEventListener("click", () =>
+    {
+        handleOperatorClick(operatorBtn);
+        updateDisplay();
+    });
+});
+
+equalsBtn.addEventListener("click", () =>
+{
+    calculateAndDisplay();
+}
+);
 
 
 function operate(a, b, operator)
 {
+    //convert a and b to numbers
+    a = +a;
+    b = +b;
+
+    if (!operator || !b)
+    {
+        return a;
+    }
+
     switch (operator)
     {
         case "+":
@@ -23,9 +63,9 @@ function operate(a, b, operator)
         case "/":
             return divide(a, b);
             break;
-        
+
         default:
-            console.log("unsupported operator used")    
+            console.log("unsupported operator used")
 
     }
 }
@@ -48,4 +88,54 @@ function multiply(a, b)
 function divide(a, b)
 {
     return a / b;
+}
+
+function updateDisplay()
+{
+    display.textContent = a + operator + b;
+}
+
+function handleNumberButtonClick(numberBtn)
+{
+    if (operator)
+    {
+        b += numberBtn.textContent;
+    }
+    else
+    {
+        a += numberBtn.textContent;
+    }
+
+    updateDisplay();
+}
+
+function handleOperatorClick(operatorBtn)
+{
+    if (!b)
+    {
+        operator = operatorBtn.textContent;
+        updateDisplay();
+    }
+    else
+    {
+        calculateAndDisplay(operatorBtn.textContent);
+    }
+
+}
+
+function calculateAndDisplay(optionalOperator = "")
+{
+    let result = Math.round(operate(a, b, operator));
+    reset()
+    a = result;
+    operator = optionalOperator;
+    updateDisplay();
+}
+
+function reset()
+{
+    a = "";
+    b = "";
+    operator = "";
+    updateDisplay();
 }
