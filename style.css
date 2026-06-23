@@ -71,7 +71,8 @@ body {
 }
 
 #buttons-container .operator-button,
-#buttons-container #clear-button {
+#buttons-container #clear-button,
+#buttons-container #backspace {
     background-color: #878f7a;
 }
 
