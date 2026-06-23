@@ -11,12 +11,31 @@ let operator = "";
 let textToDisplay = "";
 let hasResult = false;
 
-document.addEventListener("keydown", (event)=>{
+//keyboard support
+document.addEventListener("keydown", (event) =>
+{
     const numbers = "0,1,2,3,4,5,6,7,8,9".split(",");
-    let isNumber = numbers.includes(event.key);
-    if(isNumber)
+    const operators = "+,-,*,/".split(",");
+
+    let keyPressed = event.key;
+    
+    let isNumber = numbers.includes(keyPressed);
+    let isOperator = operators.includes(keyPressed);
+
+    if (isNumber)
     {
-        handleNumberButtonClick(event.key);
+        handleNumberButtonClick(keyPressed);
+    }
+    else if(isOperator)
+    {
+        handleOperatorClick(keyPressed)
+    }
+    else if (keyPressed === "Backspace")
+    {
+        handleBackspaceClick();
+    }
+    else{
+        console.log("unsupported key pressed: "+ event.key);
     }
 })
 
@@ -33,7 +52,7 @@ operatorBtns.forEach(operatorBtn =>
 {
     operatorBtn.addEventListener("click", () =>
     {
-        handleOperatorClick(operatorBtn);
+        handleOperatorClick(operatorBtn.textContent);
         updateDisplay();
     });
 });
@@ -46,27 +65,7 @@ clearBtn.addEventListener("click", () =>
 
 equalsBtn.addEventListener("click", () => calculateAndDisplay());
 
-backspaceBtn.addEventListener("click", () =>
-{
-    if (hasResult)
-    {
-        reset();
-    }
-    else if (b)
-    {
-        b = deleteLastChar(b);
-    }
-    else if (operator)
-    {
-        operator = "";
-    }
-    else if (a)
-    {
-        a = deleteLastChar(a);
-    }
-
-    updateDisplay();
-})
+backspaceBtn.addEventListener("click", () => handleBackspaceClick());
 
 //end of runtime code
 
@@ -161,18 +160,40 @@ function handleNumberButtonClick(numberAsString)
     updateDisplay();
 }
 
-function handleOperatorClick(operatorBtn)
+function handleOperatorClick(operatorAsString)
 {
     if (!b)
     {
-        operator = operatorBtn.textContent;
+        operator = operatorAsString;
         updateDisplay();
     }
     else
     {
-        calculateAndDisplay(operatorBtn.textContent);
+        calculateAndDisplay(operatorAsString);
     }
 
+}
+
+function handleBackspaceClick()
+{
+    if (hasResult)
+    {
+        reset();
+    }
+    else if (b)
+    {
+        b = deleteLastChar(b);
+    }
+    else if (operator)
+    {
+        operator = "";
+    }
+    else if (a)
+    {
+        a = deleteLastChar(a);
+    }
+
+    updateDisplay();
 }
 
 function calculateAndDisplay(optionalOperator = "")
