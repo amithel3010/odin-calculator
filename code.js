@@ -39,20 +39,21 @@ clearBtn.addEventListener("click", () =>
 
 equalsBtn.addEventListener("click", () => calculateAndDisplay());
 
-backspaceBtn.addEventListener("click", () => {
-    if(hasResult)
+backspaceBtn.addEventListener("click", () =>
+{
+    if (hasResult)
     {
         reset();
     }
-    else if(b)
+    else if (b)
     {
         b = deleteLastChar(b);
     }
-    else if(operator)
+    else if (operator)
     {
         operator = "";
     }
-    else if(a)
+    else if (a)
     {
         a = deleteLastChar(a);
     }
@@ -124,7 +125,14 @@ function divide(a, b)
 
 function updateDisplay()
 {
-    display.textContent = a + operator + b;
+    if (!a)
+    {
+        display.textContent = "0";
+    }
+    else
+    {
+        display.textContent = a + operator + b;
+    }
 }
 
 function handleNumberButtonClick(numberBtn)
@@ -179,5 +187,5 @@ function reset()
 
 function deleteLastChar(string)
 {
-    return string.slice(0,-1);
+    return string.slice(0, -1);
 }
