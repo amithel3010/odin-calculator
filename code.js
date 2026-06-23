@@ -29,7 +29,7 @@ operatorBtns.forEach(operatorBtn =>
     });
 });
 
-equalsBtn.addEventListener("click", calculateAndDisplay);
+equalsBtn.addEventListener("click", () => calculateAndDisplay());
 clearBtn.addEventListener("click", reset);
 
 
@@ -39,7 +39,7 @@ function operate(a, b, operator)
     a = +a;
     b = +b;
 
-    if (!operator || !b)
+    if (!operator)
     {
         return a;
     }
@@ -85,7 +85,13 @@ function multiply(a, b)
 
 function divide(a, b)
 {
-    return a / b;
+    if (b === 0)
+    {
+        alert("can't divide by 0!");
+        return a;
+    }
+    else
+        return a / b;
 }
 
 function updateDisplay()
