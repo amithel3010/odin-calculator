@@ -70,7 +70,8 @@ body {
     border-radius: 10px;
 }
 
-#buttons-container .operator-button {
+#buttons-container .operator-button,
+#buttons-container #clear-button {
     background-color: #878f7a;
 }
 
@@ -82,4 +83,5 @@ body {
 #clear-button {
     flex-grow: 1;
     max-height: 72px;
+    
 }
