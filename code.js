@@ -34,7 +34,7 @@ document.addEventListener("keydown", (event) =>
     {
         handleBackspaceClick();
     }
-    else if(keyPressed === "=")
+    else if(keyPressed === "=" || keyPressed === "Enter")
     {
         calculateAndDisplay();
     }
