@@ -14,10 +14,12 @@ body {
 
 #display {
     font-size: 36px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    display: inline-block;
+
     box-sizing: border-box;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 
     background-color: #7d9858;
 
@@ -27,6 +29,8 @@ body {
     margin: 0;
     padding: 12px;
     min-height: 72px;
+    max-width: 300px;
+
 
 }
 
@@ -75,7 +79,7 @@ body {
     max-height: 72px;
 }
 
-#clear-button{
+#clear-button {
     flex-grow: 1;
     max-height: 72px;
 }

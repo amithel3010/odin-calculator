@@ -2,6 +2,7 @@
 const numberBtns = document.querySelectorAll(".number-button");
 const operatorBtns = document.querySelectorAll(".operator-button");
 const equalsBtn = document.querySelector("#equals");
+const clearBtn = document.querySelector("#clear-button")
 const display = document.querySelector("#display");
 
 //calculation vars
@@ -28,11 +29,8 @@ operatorBtns.forEach(operatorBtn =>
     });
 });
 
-equalsBtn.addEventListener("click", () =>
-{
-    calculateAndDisplay();
-}
-);
+equalsBtn.addEventListener("click", calculateAndDisplay);
+clearBtn.addEventListener("click", reset);
 
 
 function operate(a, b, operator)
