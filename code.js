@@ -3,6 +3,7 @@ const numberBtns = document.querySelectorAll(".number-button");
 const operatorBtns = document.querySelectorAll(".operator-button");
 const equalsBtn = document.querySelector("#equals");
 const clearBtn = document.querySelector("#clear-button")
+const backspaceBtn = document.querySelector("#backspace");
 const display = document.querySelector("#display");
 
 //calculation vars
@@ -30,12 +31,34 @@ operatorBtns.forEach(operatorBtn =>
     });
 });
 
-equalsBtn.addEventListener("click", () => calculateAndDisplay());
 clearBtn.addEventListener("click", () =>
 {
     reset();
     updateDisplay()
 });
+
+equalsBtn.addEventListener("click", () => calculateAndDisplay());
+
+backspaceBtn.addEventListener("click", () => {
+    if(hasResult)
+    {
+        reset();
+    }
+    else if(b)
+    {
+        b = deleteLastChar(b);
+    }
+    else if(operator)
+    {
+        operator = "";
+    }
+    else if(a)
+    {
+        a = deleteLastChar(a);
+    }
+
+    updateDisplay();
+})
 
 
 function operate(a, b, operator)
@@ -154,11 +177,7 @@ function reset()
     hasResult = false;
 }
 
-
-//if has result 
-//and number pressed
-//reset everything 
-//a = number pressed
-
-//if has result and operator pressed
-//a = result
+function deleteLastChar(string)
+{
+    return string.slice(0,-1);
+}
