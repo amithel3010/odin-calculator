@@ -1,4 +1,3 @@
-//query relavnet html elements
 const numberBtns = document.querySelectorAll(".number-button");
 const operatorBtns = document.querySelectorAll(".operator-button");
 const equalsBtn = document.querySelector("#equals");
@@ -6,7 +5,6 @@ const clearBtn = document.querySelector("#clear-button")
 const backspaceBtn = document.querySelector("#backspace");
 const display = document.querySelector("#display");
 
-//calculation vars
 let a = "";
 let b = "";
 let operator = "";
