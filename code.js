@@ -11,11 +11,20 @@ let operator = "";
 let textToDisplay = "";
 let hasResult = false;
 
+document.addEventListener("keydown", (event)=>{
+    const numbers = "0,1,2,3,4,5,6,7,8,9".split(",");
+    let isNumber = numbers.includes(event.key);
+    if(isNumber)
+    {
+        handleNumberButtonClick(event.key);
+    }
+})
+
 numberBtns.forEach(numberBtn =>
 {
     numberBtn.addEventListener("click", () =>
     {
-        handleNumberButtonClick(numberBtn);
+        handleNumberButtonClick(numberBtn.textContent);
         updateDisplay();
     });
 });
@@ -59,6 +68,7 @@ backspaceBtn.addEventListener("click", () =>
     updateDisplay();
 })
 
+//end of runtime code
 
 function operate(a, b, operator)
 {
@@ -133,11 +143,11 @@ function updateDisplay()
     }
 }
 
-function handleNumberButtonClick(numberBtn)
+function handleNumberButtonClick(numberAsString)
 {
     if (operator)
     {
-        b += numberBtn.textContent;
+        b += numberAsString;
     }
     else
     {
@@ -145,7 +155,7 @@ function handleNumberButtonClick(numberBtn)
         {
             reset();
         }
-        a += numberBtn.textContent;
+        a += numberAsString;
     }
 
     updateDisplay();
