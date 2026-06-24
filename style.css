@@ -24,10 +24,10 @@ body {
     background-color: #7d9858;
 
     /* flex-grow: 1; */
-    border: 2px solid black;
-    border-radius: 10px;
-    margin: 0;
-    padding: 12px;
+    border: 4px solid black;
+    border-radius: 15px;
+    margin: 6px 0 0 0;
+    padding: 16px;
     min-height: 72px;
     max-width: 300px;
 
@@ -37,15 +37,22 @@ body {
 #calc-ui {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
     width: fit-content;
     background-color: #2B5748;
 
     padding: 10px;
 
-    border: 4px solid black;
-    border-radius: 10px;
+    border: 5px solid black;
+    border-radius: 20px;
 
+}
+
+#buttons-container
+{
+    display: flex;
+    flex-direction: column;
+    gap: 8px
 }
 
 .row {
@@ -66,8 +73,9 @@ body {
 
     background-color: #9CB080;
 
-    border: 5px outset #2B5748;
-    border-radius: 10px;
+    border: 5px outset;
+    border-color: #17231f #2B5748 #2B5748 #17231f;
+    border-radius: 50px;
 }
 
 .key:active{
