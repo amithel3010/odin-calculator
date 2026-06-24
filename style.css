@@ -53,7 +53,7 @@ body {
     gap: 4px;
 }
 
-#buttons-container button {
+.key {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,24 +64,19 @@ body {
     font-family: inherit;
     font-size: 48px;
 
-    background-color: #9CB080;
+    /* background-color: #9CB080; */
 
-    border: 3px outset #2B5748;
+    border: 5px outset #2B5748;
     border-radius: 10px;
 }
 
-#buttons-container .operator-button,
-#buttons-container #clear-button,
-#buttons-container #backspace {
+.operator,
+.special {
     background-color: #878f7a;
 }
 
+.special,
 #number-0 {
-    flex-grow: 1;
-    max-height: 72px;
-}
-
-#clear-button {
     flex-grow: 1;
     max-height: 72px;
 }

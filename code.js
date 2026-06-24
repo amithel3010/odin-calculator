@@ -1,5 +1,5 @@
-const numberBtns = document.querySelectorAll(".number-button");
-const operatorBtns = document.querySelectorAll(".operator-button");
+const numberBtns = document.querySelectorAll(".number");
+const operatorBtns = document.querySelectorAll(".operator");
 const equalsBtn = document.querySelector("#equals");
 const clearBtn = document.querySelector("#clear-button")
 const backspaceBtn = document.querySelector("#backspace");
