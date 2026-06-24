@@ -96,16 +96,6 @@ function operate(a, b, operator)
         return a;
     }
 
-    //convert entities to operators
-    if (operator == "÷")
-    {
-        operator = "/";
-    }
-    if (operator = "×")
-    {
-        operator = "*";
-    }
-
     switch (operator)
     {
         case "+":
@@ -116,11 +106,11 @@ function operate(a, b, operator)
             return subtract(a, b);
             break;
 
-        case "*":
+        case "×":
             return multiply(a, b);
             break;
 
-        case "/":
+        case "÷":
             return divide(a, b);
             break;
 
