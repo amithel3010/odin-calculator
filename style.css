@@ -64,10 +64,19 @@ body {
     font-family: inherit;
     font-size: 48px;
 
-    /* background-color: #9CB080; */
+    background-color: #9CB080;
 
     border: 5px outset #2B5748;
     border-radius: 10px;
+}
+
+.key:active{
+    border: 5px inset #2B5748;
+}
+
+.key:hover
+{
+    background-color: #6c7b58;
 }
 
 .operator,
