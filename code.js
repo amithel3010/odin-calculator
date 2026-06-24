@@ -14,19 +14,26 @@ let hasResult = false;
 //keyboard support
 document.addEventListener("keydown", (event) =>
 {
-    const numbers = "0,1,2,3,4,5,6,7,8,9".split(",");
-    const operators = "+,-,*,/".split(",");
+    event.target.blur(); //to not have anything selected
+    //I don't really understand why when a key is pressed a button is selected
+
+    const NUMBERS = "0,1,2,3,4,5,6,7,8,9".split(",");
+    const OPERATORS = "+,-,*,/".split(",");
 
     let keyPressed = event.key;
-    
-    let isNumber = numbers.includes(keyPressed);
-    let isOperator = operators.includes(keyPressed);
 
+    let isNumber = NUMBERS.includes(keyPressed);
+    let isOperator = OPERATORS.includes(keyPressed);
+
+    if (event.key === "Tab")
+    {
+        event.preventDefault();
+    }
     if (isNumber)
     {
         handleNumberButtonClick(keyPressed);
     }
-    else if(isOperator)
+    else if (isOperator)
     {
         handleOperatorClick(keyPressed)
     }
@@ -34,12 +41,14 @@ document.addEventListener("keydown", (event) =>
     {
         handleBackspaceClick();
     }
-    else if(keyPressed === "=" || keyPressed === "Enter")
+    else if (keyPressed === "=" || keyPressed === "Enter")
     {
+        event.preventDefault();       
         calculateAndDisplay();
     }
-    else{
-        console.log("unsupported key pressed: "+ event.key);
+    else
+    {
+        console.log("unsupported key pressed: " + event.key);
     }
 })
 
@@ -71,7 +80,7 @@ equalsBtn.addEventListener("click", () => calculateAndDisplay());
 
 backspaceBtn.addEventListener("click", () => handleBackspaceClick());
 
-//end of runtime code
+
 
 function operate(a, b, operator)
 {
