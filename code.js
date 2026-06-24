@@ -1,5 +1,6 @@
 const numberBtns = document.querySelectorAll(".number");
 const operatorBtns = document.querySelectorAll(".operator");
+const decimalBtn = document.querySelector("#decimal");
 const equalsBtn = document.querySelector("#equals");
 const clearBtn = document.querySelector("#clear-button")
 const backspaceBtn = document.querySelector("#backspace");
@@ -43,7 +44,7 @@ document.addEventListener("keydown", (event) =>
     }
     else if (keyPressed === "=" || keyPressed === "Enter")
     {
-        event.preventDefault();       
+        event.preventDefault();
         calculateAndDisplay();
     }
     else
@@ -80,6 +81,8 @@ equalsBtn.addEventListener("click", () => calculateAndDisplay());
 
 backspaceBtn.addEventListener("click", () => handleBackspaceClick());
 
+decimalBtn.addEventListener("click", () => handleDecimalClick())
+
 
 
 function operate(a, b, operator)
@@ -91,6 +94,16 @@ function operate(a, b, operator)
     if (!operator)
     {
         return a;
+    }
+
+    //convert entities to operators
+    if (operator == "÷")
+    {
+        operator = "/";
+    }
+    if (operator = "×")
+    {
+        operator = "*";
     }
 
     switch (operator)
@@ -112,7 +125,7 @@ function operate(a, b, operator)
             break;
 
         default:
-            console.log("unsupported operator used")
+            console.log("unsupported operator used: " + operator)
 
     }
 }
@@ -175,6 +188,8 @@ function handleNumberButtonClick(numberAsString)
 
 function handleOperatorClick(operatorAsString)
 {
+
+
     if (!b)
     {
         operator = operatorAsString;
@@ -211,7 +226,7 @@ function handleBackspaceClick()
 
 function calculateAndDisplay(optionalOperator = "")
 {
-    let result = Math.round(operate(a, b, operator));
+    let result = roundToTwoDecimals(operate(a, b, operator));
     reset()
     a = result;
     operator = optionalOperator;
@@ -230,4 +245,29 @@ function reset()
 function deleteLastChar(string)
 {
     return string.slice(0, -1);
+}
+
+function roundToTwoDecimals(num)
+{
+    return Math.round((num + Number.EPSILON) * 100) / 100;
+}
+
+function handleDecimalClick()
+{
+    //check if should add to a or b
+    if (b)
+    {
+        if (!b.includes("."))
+        {
+            b += ".";
+        }
+    }
+    else if (a) //if b doesn't exist 
+    {
+        if (!a.includes("."))
+        {
+            a += ".";
+        }
+    }
+    updateDisplay();
 }
